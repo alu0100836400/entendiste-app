@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Entendiste</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Entrar</string>
+    <string name="verpasswords">Ver contraseñas</string>
+
+    <string name="item1">Mi cuenta</string>
+    <string name="item2">Configuracion</string>
+    <string name="item3">Salir</string>
+</resources>
