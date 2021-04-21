@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/item"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="mensaje" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:lineSpacingExtra="14sp"
+    android:padding="25dp"
+    android:paddingStart="25sp"
+    android:paddingEnd="5sp"
+    android:text="@string/mensaje"
+    android:textColor="#000000"
+    android:textSize="36sp" />

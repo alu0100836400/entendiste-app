@@ -4,8 +4,14 @@
     android:background="#E89B2B">
 
     <item
+        android:title="Item"
+        android:visible="true"
+        android:background="@color/soft_orange"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/item1"
         android:icon="@android:drawable/ic_menu_myplaces"
+        android:background="@color/soft_orange"
         android:title="@string/item1" />
     <item
         android:id="@+id/item2"

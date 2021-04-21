@@ -22,7 +22,9 @@ public class AdapterItemOptions extends RecyclerView.Adapter<AdapterItemOptions.
     @Override
     public AdapterItemOptions.ViewHolderOptions onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, null, false);
-        return null;
+        RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        view.setLayoutParams(lp);
+        return new ViewHolderOptions(view);
     }
 
     @Override
@@ -32,7 +34,7 @@ public class AdapterItemOptions extends RecyclerView.Adapter<AdapterItemOptions.
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listaOpciones.size();
     }
 
     public class ViewHolderOptions extends RecyclerView.ViewHolder {
@@ -41,7 +43,7 @@ public class AdapterItemOptions extends RecyclerView.Adapter<AdapterItemOptions.
 
         public ViewHolderOptions(@NonNull View itemView) {
             super(itemView);
-            opcion = itemView.findViewById(R.id.item);
+            opcion = (TextView) itemView.findViewById(R.id.item);
         }
 
         public void asignarOpciones(String s) {
