@@ -49,12 +49,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void Configuracion(View view) {
-        Intent opciones = new Intent(this, OptionsActivity.class);
-        //login.putExtra("dato", datoEjemplo.getText().toString()); //así se le pasa un argumento a la otra vista
-        startActivity(opciones);
-    }
-
 /*
     @Override
     protected void onStart() {
