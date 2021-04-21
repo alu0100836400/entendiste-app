@@ -8,4 +8,11 @@
     <string name="item1">Mi cuenta</string>
     <string name="item2">Configuracion</string>
     <string name="item3">Salir</string>
+
+    <!-- Botones de opciones -->
+
+    <string name="boton1">Opción 1</string>
+    <string name="boton2">Opción 2</string>
+    <string name="boton3">Opción 3</string>
+    <string name="boton4">Opción 4</string>
 </resources>

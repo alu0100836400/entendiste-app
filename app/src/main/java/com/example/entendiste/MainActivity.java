@@ -35,16 +35,24 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.item1) {
-            Toast.makeText(this, "Opción 1", Toast.LENGTH_SHORT).show();
-        }
-        else if(id == R.id.item2) {
-            Toast.makeText(this, "Opción 2", Toast.LENGTH_SHORT).show();
-        }
-        else if(id == R.id.item3) {
-            Toast.makeText(this, "Opción 3", Toast.LENGTH_SHORT).show();
+        switch (item.getItemId()) {
+            case R.id.item1: Toast.makeText(this, "Opción 1", Toast.LENGTH_SHORT).show();
+                            break;
+            case R.id.item2: Intent opciones = new Intent(this, OptionsActivity.class);
+                            //login.putExtra("dato", datoEjemplo.getText().toString()); //así se le pasa un argumento a la otra vista
+                            startActivity(opciones);
+                            break;
+            case R.id.item3: Toast.makeText(this, "Opción 3", Toast.LENGTH_SHORT).show();
+                            break;
+            default:         Toast.makeText(this, "¿?¿?", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void Configuracion(View view) {
+        Intent opciones = new Intent(this, OptionsActivity.class);
+        //login.putExtra("dato", datoEjemplo.getText().toString()); //así se le pasa un argumento a la otra vista
+        startActivity(opciones);
     }
 
 /*
