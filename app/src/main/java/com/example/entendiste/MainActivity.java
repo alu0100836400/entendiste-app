@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
         //login.putExtra("dato", datoEjemplo.getText().toString()); //así se le pasa un argumento a la otra vista
         startActivity(login);
     }
+    public void asignaturas(View view) {
+        Intent asignaturas = new Intent(this, AsignaturasActivity.class);
+        //login.putExtra("dato", datoEjemplo.getText().toString()); //así se le pasa un argumento a la otra vista
+        startActivity(asignaturas);
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -35,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (item.getItemId()) {
+        switch (id) {
             case R.id.item1: Toast.makeText(this, "Opción 1", Toast.LENGTH_SHORT).show();
                             break;
             case R.id.item2: Intent opciones = new Intent(this, OptionsActivity.class);
