@@ -24,6 +24,7 @@
         android:id="@+id/btnAsign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="asignaturas"
         android:text="Button"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"

@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void asignaturas(View view) {
         Intent asignaturas = new Intent(this, AsignaturasActivity.class);
-        //login.putExtra("dato", datoEjemplo.getText().toString()); //así se le pasa un argumento a la otra vista
         startActivity(asignaturas);
     }
 
@@ -43,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
         switch (id) {
             case R.id.item1: Toast.makeText(this, "Opción 1", Toast.LENGTH_SHORT).show();
                             break;
-            case R.id.item2: Intent opciones = new Intent(this, OptionsActivity.class);
+            //case R.id.item2: Intent opciones = new Intent(this, OptionsActivity.class);
                             //login.putExtra("dato", datoEjemplo.getText().toString()); //así se le pasa un argumento a la otra vista
-                            startActivity(opciones);
-                            break;
+              //              startActivity(opciones);
+                //            break;
             case R.id.item3: Toast.makeText(this, "Opción 3", Toast.LENGTH_SHORT).show();
                             break;
             default:         Toast.makeText(this, "¿?¿?", Toast.LENGTH_SHORT).show();

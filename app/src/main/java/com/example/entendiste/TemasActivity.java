@@ -5,14 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class OptionsActivity extends AppCompatActivity {
+public class TemasActivity extends AppCompatActivity {
 
     private ArrayList<String> listOpciones;
     private RecyclerView recycler;
@@ -20,7 +16,7 @@ public class OptionsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_options);
+        setContentView(R.layout.activity_temas);
         recycler = (RecyclerView) findViewById(R.id.rv1);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
@@ -29,11 +25,10 @@ public class OptionsActivity extends AppCompatActivity {
 //        for(int i = 0; i <= 50; i++) {
 //            listOpciones.add("Dato # " + i + " ");
 //        }
-        listOpciones.add("Ajustes de pantalla");
-        listOpciones.add("Preferencias");
-        listOpciones.add("Cuenta");
-        listOpciones.add("Cerrar sesión");
-        AdapterItemOptions adapter = new AdapterItemOptions(listOpciones);
-        recycler.setAdapter(adapter);
+        listOpciones.add("Vectores");
+        listOpciones.add("Matrices");
+        listOpciones.add("Listas");
+        //AdapterItemOptions adapter = new AdapterItemOptions(listOpciones);
+        //recycler.setAdapter(adapter);
     }
 }

@@ -1,31 +1,35 @@
 package com.example.entendiste;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
+import java.util.ArrayList;
 
 public class AsignaturasActivity extends AppCompatActivity {
+
+    private ArrayList<String> listOpciones;
+    private RecyclerView recycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asignaturas);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        recycler = (RecyclerView) findViewById(R.id.rv1);
+        recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        listOpciones = new ArrayList<String>();
+
+//        for(int i = 0; i <= 50; i++) {
+//            listOpciones.add("Dato # " + i + " ");
+//        }
+        listOpciones.add("AEDA");
+        listOpciones.add("CyA");
+        listOpciones.add("Principios de computadores");
+        listOpciones.add("IA");
+        AdapterItemOptions adapter = new AdapterItemOptions(listOpciones, this);
+        recycler.setAdapter(adapter);
     }
 }

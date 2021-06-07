@@ -47,8 +47,14 @@ public class LoginActivity extends AppCompatActivity implements Callback<LoginRe
     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
         if(response.isSuccessful()) {
             LoginResponse body = response.body();
-            if(body.key.toString().equals("true"))
+            if(body.key.toString().equals("true")) {
+                SharedPreferences userpref = getSharedPreferences("datos", Context.MODE_PRIVATE);
+                SharedPreferences.Editor useredit = userpref.edit();
+                useredit.putString("user", "alu0100836400");
+                useredit.commit();
+                //userpref.getString("user", ""); //asi pa pillarlo
                 Toast.makeText(LoginActivity.this, "Pa dentro!", Toast.LENGTH_LONG).show();
+            }
             else
                 Toast.makeText(LoginActivity.this, "No puedes pasar!", Toast.LENGTH_LONG).show();
 
