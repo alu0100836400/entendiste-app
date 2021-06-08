@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements Callback<LoginRe
     }
 
     public void Login(View view) {
-        Call<LoginResponse> call = ApiAdapter.getApiService().getLogin(user.getText().toString(), password.getText().toString()); //user.getText().toString(), password.getText().toString()
+        Call<LoginResponse> call = ApiAdapter.getApiService().getLogin("alu0100836400", "123456"); //user.getText().toString(), password.getText().toString()
         call.enqueue(this);
     }
 
@@ -50,10 +51,12 @@ public class LoginActivity extends AppCompatActivity implements Callback<LoginRe
             if(body.key.toString().equals("true")) {
                 SharedPreferences userpref = getSharedPreferences("datos", Context.MODE_PRIVATE);
                 SharedPreferences.Editor useredit = userpref.edit();
-                useredit.putString("user", "alu0100836400");
+                useredit.putString("user", "alu0100836400"); //user.getText().toString()
                 useredit.commit();
-                //userpref.getString("user", ""); //asi pa pillarlo
+
                 Toast.makeText(LoginActivity.this, "Pa dentro!", Toast.LENGTH_LONG).show();
+                Intent asignaturas = new Intent(this, AsignaturasActivity.class);
+                startActivity(asignaturas);
             }
             else
                 Toast.makeText(LoginActivity.this, "No puedes pasar!", Toast.LENGTH_LONG).show();

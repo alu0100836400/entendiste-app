@@ -1,10 +1,29 @@
 package com.example.entendiste.io.response;
 
+import com.example.entendiste.model.Asignatura;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class AsignaturasResponse {
 
-    public String key;
+    public String id;
+    public String nombre;
 
-    public String getKey() { return key; }
+    public String getId() {
+        return id;
+    }
 
-    public void setKey(String key) { this.key = key; }
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
 }

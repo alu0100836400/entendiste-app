@@ -1,5 +1,6 @@
 package com.example.entendiste;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,60 +12,57 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.entendiste.io.response.AsignaturasResponse;
-
 import java.util.ArrayList;
 
-public class AdapterItemOptions extends RecyclerView.Adapter<AdapterItemOptions.ViewHolderOptions> {
+public class AdapterItemTemas  extends RecyclerView.Adapter<AdapterItemTemas.ViewHolderTemas>{
 
-    ArrayList<AsignaturasResponse> listaOpciones;
+    ArrayList<String> listaOpciones;
     AppCompatActivity activity;
 
-    public AdapterItemOptions(ArrayList<AsignaturasResponse> listaOpciones, AppCompatActivity activity) {
+    public AdapterItemTemas(ArrayList<String> listaOpciones, AppCompatActivity activity) {
         this.listaOpciones = listaOpciones;
         this.activity = activity;
     }
 
     @NonNull
     @Override
-    public AdapterItemOptions.ViewHolderOptions onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterItemTemas.ViewHolderTemas onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, null, false);
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(lp);
-        return new ViewHolderOptions(view);
+        return new AdapterItemTemas.ViewHolderTemas(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterItemOptions.ViewHolderOptions holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterItemTemas.ViewHolderTemas holder, int position) {
         holder.asignarOpciones(listaOpciones.get(position));
-        //holder.opcion.setText();
     }
 
     @Override
     public int getItemCount() {
         return listaOpciones.size();
     }
-
-    public class ViewHolderOptions extends RecyclerView.ViewHolder {
+    public class ViewHolderTemas extends RecyclerView.ViewHolder {
 
         ConstraintLayout layout;
         TextView opcion;
 
-        public ViewHolderOptions(@NonNull View itemView) {
+        public ViewHolderTemas(@NonNull View itemView) {
             super(itemView);
             layout = (ConstraintLayout) itemView.findViewById(R.id.constraint_item);
             opcion = (TextView) itemView.findViewById(R.id.item);
         }
 
-        public void asignarOpciones(AsignaturasResponse s) {
+        public void asignarOpciones(String s) {
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent asignaturas = new Intent(activity, TemasActivity.class);
+                    activity.startActivity(asignaturas);
                     Toast.makeText(activity, "clickado", Toast.LENGTH_SHORT).show();
                 }
             });
-            opcion.setText(s.getNombre());
+            opcion.setText(s);
         }
     }
 }
