@@ -1,5 +1,6 @@
 package com.example.entendiste;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,9 @@ public class AdapterItemOptions extends RecyclerView.Adapter<AdapterItemOptions.
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent temas = new Intent(activity, TemasActivity.class);
+                    temas.putExtra("dato", "este es el valor del dato");
+                    activity.startActivity(temas);
                     Toast.makeText(activity, "clickado", Toast.LENGTH_SHORT).show();
                 }
             });

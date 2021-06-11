@@ -16,6 +16,11 @@ public class TemasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle parametros = this.getIntent().getExtras();
+        if(parametros !=null){
+            String datos = parametros.getString("datos");
+            //tv2.setText(datos); //hay que obtener los datos del activity anterior a ver si rula
+        }
         setContentView(R.layout.activity_temas);
         recycler = (RecyclerView) findViewById(R.id.rv1);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

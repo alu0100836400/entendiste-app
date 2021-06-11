@@ -12,14 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.entendiste.io.response.TemasResponse;
+
 import java.util.ArrayList;
 
 public class AdapterItemTemas  extends RecyclerView.Adapter<AdapterItemTemas.ViewHolderTemas>{
 
-    ArrayList<String> listaOpciones;
+    ArrayList<TemasResponse> listaOpciones;
     AppCompatActivity activity;
 
-    public AdapterItemTemas(ArrayList<String> listaOpciones, AppCompatActivity activity) {
+    public AdapterItemTemas(ArrayList<TemasResponse> listaOpciones, AppCompatActivity activity) {
         this.listaOpciones = listaOpciones;
         this.activity = activity;
     }
@@ -53,7 +55,7 @@ public class AdapterItemTemas  extends RecyclerView.Adapter<AdapterItemTemas.Vie
             opcion = (TextView) itemView.findViewById(R.id.item);
         }
 
-        public void asignarOpciones(String s) {
+        public void asignarOpciones(TemasResponse s) {
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -62,7 +64,7 @@ public class AdapterItemTemas  extends RecyclerView.Adapter<AdapterItemTemas.Vie
                     Toast.makeText(activity, "clickado", Toast.LENGTH_SHORT).show();
                 }
             });
-            opcion.setText(s);
+            opcion.setText(s.getPregunta());
         }
     }
 }

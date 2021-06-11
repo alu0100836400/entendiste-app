@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.entendiste.io.response.AsignaturasResponse;
-import com.example.entendiste.io.response.LoginResponse;
 import com.example.entendiste.model.Asignatura;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AsignaturasActivity extends AppCompatActivity implements Callback<List<Asignatura>> {
+public class AsignaturasActivity extends AppCompatActivity implements Callback<List<AsignaturasResponse>> {
 
     private ArrayList<AsignaturasResponse> listOpciones;
     private RecyclerView recycler;
@@ -35,12 +34,12 @@ public class AsignaturasActivity extends AppCompatActivity implements Callback<L
         SharedPreferences userpref = getSharedPreferences("datos", Context.MODE_PRIVATE);
         String usuario = userpref.getString("user", "");
 
-        Call<List<Asignatura>> call = ApiAdapter.getApiService().getAsignaturas(usuario);
+        Call<List<AsignaturasResponse>> call = ApiAdapter.getApiService().getAsignaturas(usuario);
         call.enqueue(this);
     }
 
     @Override
-    public void onResponse(Call<List<AsignaturaResponse>> call, Response<List<Asignatura>> response) {
+    public void onResponse(Call<List<AsignaturasResponse>> call, Response<List<AsignaturasResponse>> response) {
         listOpciones = new ArrayList<AsignaturasResponse>();
 
         for(int i = 0; i < response.body().size(); i++) {
@@ -51,7 +50,7 @@ public class AsignaturasActivity extends AppCompatActivity implements Callback<L
     }
 
     @Override
-    public void onFailure(Call<List<Asignatura>> call, Throwable t) {
+    public void onFailure(Call<List<AsignaturasResponse>> call, Throwable t) {
         Toast.makeText(this, "Fallo buscando las asignaturas", Toast.LENGTH_SHORT).show();
     }
 }

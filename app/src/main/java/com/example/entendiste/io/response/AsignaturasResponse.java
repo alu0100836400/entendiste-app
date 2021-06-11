@@ -1,10 +1,5 @@
 package com.example.entendiste.io.response;
 
-import com.example.entendiste.model.Asignatura;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 public class AsignaturasResponse {
 
     public String id;
