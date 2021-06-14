@@ -23,8 +23,10 @@ public interface ApiService {
             @Query("user") String user
     );
 
-    @GET("temas")
-    Call<List<TemasResponse>> getOne();
+    @GET("preguntas")
+    Call<List<TemasResponse>> getTemas(
+            @Query("idAsignatura") String idAsignatura
+    );
 /*
     @FormUrlEncoded
     @POST("product")

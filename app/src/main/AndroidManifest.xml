@@ -12,10 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Entendiste"
         android:usesCleartextTraffic="true">
+        <activity android:name=".AnswerActivity"></activity>
         <activity
             android:name=".TemasActivity"
             android:label="@string/title_activity_temas"
-            android:theme="@style/Theme.Entendiste.NoActionBar"></activity>
+            android:theme="@style/Theme.Entendiste.NoActionBar" />
         <activity
             android:name=".AsignaturasActivity"
             android:label="@string/title_activity_asignaturas"

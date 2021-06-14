@@ -21,7 +21,6 @@ public class ApiAdapter {
         httpClient.addInterceptor(logging);
 
         //String baseUrl = "http://entendiste.local/api/";
-        //String baseUrl = "https://jsonplaceholder.typicode.com/todos/";
         String baseUrl = "http://192.168.1.55/api/";
 
         if (API_SERVICE == null) {

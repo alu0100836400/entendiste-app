@@ -11,4 +11,13 @@
     <!-- Mis colores -->
     <color name="hard_orange">#D47B00</color>
     <color name="soft_orange">#FFE23B</color>
+
+    <!-- Colores de la paleta -->
+    <color name="raw_sienna">#CA7E4C</color>
+    <color name="macaroni_cheese">#FDC28E</color>
+    <color name="misty_rose">#FADEDE</color>
+    <color name="melon">#FEB6A0</color>
+    <color name="bblue_eyes">#A6C8EB</color>
+    <color name="old_lavender">#716782</color>
+    <color name="violet">#610772</color>
 </resources>

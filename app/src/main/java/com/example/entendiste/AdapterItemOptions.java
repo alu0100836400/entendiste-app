@@ -62,9 +62,9 @@ public class AdapterItemOptions extends RecyclerView.Adapter<AdapterItemOptions.
                 @Override
                 public void onClick(View v) {
                     Intent temas = new Intent(activity, TemasActivity.class);
-                    temas.putExtra("dato", "este es el valor del dato");
+                    temas.putExtra("idAsignatura", s.getId());
                     activity.startActivity(temas);
-                    Toast.makeText(activity, "clickado", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(activity, "clickado", Toast.LENGTH_SHORT).show();
                 }
             });
             opcion.setText(s.getNombre());

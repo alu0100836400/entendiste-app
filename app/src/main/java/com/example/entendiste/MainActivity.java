@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         Intent asignaturas = new Intent(this, AsignaturasActivity.class);
         startActivity(asignaturas);
     }
+    public void answer(View view) {
+        Intent answer = new Intent(this, AnswerActivity.class);
+        startActivity(answer);
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
