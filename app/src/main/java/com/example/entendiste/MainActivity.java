@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void answer(View view) {
         Intent answer = new Intent(this, AnswerActivity.class);
+        answer.putExtra("idPregunta", 1);
         startActivity(answer);
     }
 

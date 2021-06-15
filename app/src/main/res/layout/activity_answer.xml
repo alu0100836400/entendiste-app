@@ -8,7 +8,7 @@
     tools:context=".AnswerActivity">
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/rdgRespuesta"
         android:layout_width="316dp"
         android:layout_height="98dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,7 +31,7 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnConfirmar"
         android:layout_width="133dp"
         android:layout_height="54dp"
         android:text="@string/confirmar"
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.83"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/rdgRespuesta"
         app:layout_constraintVertical_bias="0.492" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

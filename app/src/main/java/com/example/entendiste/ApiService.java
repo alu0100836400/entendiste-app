@@ -2,6 +2,7 @@ package com.example.entendiste;
 
 import com.example.entendiste.io.response.AsignaturasResponse;
 import com.example.entendiste.io.response.LoginResponse;
+import com.example.entendiste.io.response.RespuestaResponse;
 import com.example.entendiste.io.response.TemasResponse;
 
 import java.util.List;
@@ -26,6 +27,12 @@ public interface ApiService {
     @GET("preguntas")
     Call<List<TemasResponse>> getTemas(
             @Query("idAsignatura") String idAsignatura
+    );
+
+    @GET("respuesta")
+    Call<RespuestaResponse> getRespuesta(
+            @Query("idPregunta") int idPregunta,
+            @Query("user") String user
     );
 /*
     @FormUrlEncoded
