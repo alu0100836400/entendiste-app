@@ -59,4 +59,33 @@ public class AnswerActivity extends AppCompatActivity {
             Toast.makeText(this, "Error: Tema no encontrado", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void enviarRespuesta() {
+        Boolean respuesta = null;
+        switch (rdgRespuesta.getCheckedRadioButtonId()) {
+            case R.id.yesBtn: respuesta = true; break;
+            case R.id.noBtn: respuesta = false; break;
+            default: Toast.makeText(this, "Debe seleccionar una respuesta", Toast.LENGTH_SHORT).show();
+        }
+        if(respuesta != null) {
+            SharedPreferences userpref = getSharedPreferences("datos", Context.MODE_PRIVATE);
+            String usuario = userpref.getString("user", "");
+            Call<RespuestaResponse> call = ApiAdapter.getApiService().setRespuesta(idPregunta, usuario, respuesta);
+            call.enqueue(new Callback<RespuestaResponse>() {
+                @Override
+                public void onResponse(Call<RespuestaResponse> call, Response<RespuestaResponse> response) {
+                    RespuestaResponse respuesta = response.body();
+                    if (!respuesta.getError())
+                        Toast.makeText(getApplicationContext(), "Respuesta guardada correctamente", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(getApplicationContext(), "El servidor devolvió error", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<RespuestaResponse> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "No se pudo guardar la respuesta", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
 }

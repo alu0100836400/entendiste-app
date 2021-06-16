@@ -44,6 +44,7 @@ public class AdapterItemTemas  extends RecyclerView.Adapter<AdapterItemTemas.Vie
     public int getItemCount() {
         return listaOpciones.size();
     }
+
     public class ViewHolderTemas extends RecyclerView.ViewHolder {
 
         ConstraintLayout layout;
@@ -59,9 +60,9 @@ public class AdapterItemTemas  extends RecyclerView.Adapter<AdapterItemTemas.Vie
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent asignaturas = new Intent(activity, TemasActivity.class);
-                    activity.startActivity(asignaturas);
-                    Toast.makeText(activity, "clickado", Toast.LENGTH_SHORT).show();
+                    Intent respuesta = new Intent(activity, AnswerActivity.class);
+                    respuesta.putExtra("idPregunta", s.idPregunta);
+                    activity.startActivity(respuesta);
                 }
             });
             opcion.setText(s.getPregunta());

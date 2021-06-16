@@ -5,6 +5,7 @@ public class RespuestaResponse {
     private String idAlumno;
     private Boolean respuesta;
     private Boolean empty;
+    private Boolean error; //solo para la insercion
 
     public int getIdPregunta() {
         return idPregunta;
@@ -37,4 +38,8 @@ public class RespuestaResponse {
     public void setEmpty(Boolean empty) {
         this.empty = empty;
     }
+
+    public Boolean getError() { return error; }
+
+    public void setError(Boolean error) { this.error = error; }
 }

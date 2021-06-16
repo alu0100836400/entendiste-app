@@ -8,7 +8,11 @@ import com.example.entendiste.io.response.TemasResponse;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -34,14 +38,12 @@ public interface ApiService {
             @Query("idPregunta") int idPregunta,
             @Query("user") String user
     );
-/*
-    @FormUrlEncoded
-    @POST("product")
-    Call<SimpleResponse> postNewProduct(
-            @Field("code") String code,
-            @Field("name") String name,
-            @Field("description") String description
-    );
 
- */
+    @FormUrlEncoded
+    @POST("respuesta")
+    Call<RespuestaResponse> setRespuesta(
+            @Field("idPregunta") int idPregunta,
+            @Field("user") String user,
+            @Field("respuesta") Boolean respuesta
+    );
 }
