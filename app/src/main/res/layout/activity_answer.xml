@@ -34,6 +34,7 @@
         android:id="@+id/btnConfirmar"
         android:layout_width="133dp"
         android:layout_height="54dp"
+        android:onClick="enviarRespuesta"
         android:text="@string/confirmar"
         app:backgroundTint="@color/raw_sienna"
         app:layout_constraintBottom_toBottomOf="parent"

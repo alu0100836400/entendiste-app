@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -60,23 +61,27 @@ public class AnswerActivity extends AppCompatActivity {
         }
     }
 
-    public void enviarRespuesta() {
-        Boolean respuesta = null;
+    public void enviarRespuesta(View view) {
+        Boolean eleccion = null;
         switch (rdgRespuesta.getCheckedRadioButtonId()) {
-            case R.id.yesBtn: respuesta = true; break;
-            case R.id.noBtn: respuesta = false; break;
+            case R.id.yesBtn: eleccion = true; break;
+            case R.id.noBtn: eleccion = false; break;
             default: Toast.makeText(this, "Debe seleccionar una respuesta", Toast.LENGTH_SHORT).show();
         }
-        if(respuesta != null) {
+        if(eleccion != null) {
             SharedPreferences userpref = getSharedPreferences("datos", Context.MODE_PRIVATE);
-            String usuario = userpref.getString("user", "");
-            Call<RespuestaResponse> call = ApiAdapter.getApiService().setRespuesta(idPregunta, usuario, respuesta);
+            String user = userpref.getString("user", "");
+            Toast.makeText(getApplicationContext(), "Respuesta guardada correctamente", Toast.LENGTH_SHORT).show();
+            Call<RespuestaResponse> call = ApiAdapter.getApiService().setRespuesta(idPregunta, user, eleccion);
             call.enqueue(new Callback<RespuestaResponse>() {
                 @Override
                 public void onResponse(Call<RespuestaResponse> call, Response<RespuestaResponse> response) {
                     RespuestaResponse respuesta = response.body();
-                    if (!respuesta.getError())
+
+                    if (!respuesta.getError()) {
                         Toast.makeText(getApplicationContext(), "Respuesta guardada correctamente", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                     else
                         Toast.makeText(getApplicationContext(), "El servidor devolvió error", Toast.LENGTH_SHORT).show();
                 }

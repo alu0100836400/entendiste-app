@@ -61,7 +61,7 @@ public class AdapterItemTemas  extends RecyclerView.Adapter<AdapterItemTemas.Vie
                 @Override
                 public void onClick(View v) {
                     Intent respuesta = new Intent(activity, AnswerActivity.class);
-                    respuesta.putExtra("idPregunta", s.idPregunta);
+                    respuesta.putExtra("idPregunta", s.idPregunta); //se esta enviando null ??????
                     activity.startActivity(respuesta);
                 }
             });

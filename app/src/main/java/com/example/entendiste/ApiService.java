@@ -44,6 +44,6 @@ public interface ApiService {
     Call<RespuestaResponse> setRespuesta(
             @Field("idPregunta") int idPregunta,
             @Field("user") String user,
-            @Field("respuesta") Boolean respuesta
+            @Field("respuesta") boolean respuesta
     );
 }
