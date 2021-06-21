@@ -37,7 +37,9 @@ public class AdapterItemTemas  extends RecyclerView.Adapter<AdapterItemTemas.Vie
 
     @Override
     public void onBindViewHolder(@NonNull AdapterItemTemas.ViewHolderTemas holder, int position) {
-        holder.asignarOpciones(listaOpciones.get(position));
+        TemasResponse tema = listaOpciones.get(position);
+        holder.asignarOpciones(tema);
+
     }
 
     @Override
@@ -61,7 +63,7 @@ public class AdapterItemTemas  extends RecyclerView.Adapter<AdapterItemTemas.Vie
                 @Override
                 public void onClick(View v) {
                     Intent respuesta = new Intent(activity, AnswerActivity.class);
-                    respuesta.putExtra("idPregunta", s.idPregunta); //se esta enviando null ??????
+                    respuesta.putExtra("idPregunta", s.getId());
                     activity.startActivity(respuesta);
                 }
             });

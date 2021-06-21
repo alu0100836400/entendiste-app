@@ -11,11 +11,27 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/orange_radial"
+        android:focusable="auto"
+        android:focusableInTouchMode="true"
+        android:onClick="buscarAsignatura"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="52dp"
+        android:background="@null"
+        android:onClick="buscarAsignatura"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_zoom_in_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

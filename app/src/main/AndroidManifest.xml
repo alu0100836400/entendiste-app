@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Entendiste"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AnswerActivity"></activity>
+        <activity android:name=".NuevaAsignaturaActivity"></activity>
+        <activity android:name=".AnswerActivity" />
         <activity
             android:name=".TemasActivity"
             android:label="@string/title_activity_temas"

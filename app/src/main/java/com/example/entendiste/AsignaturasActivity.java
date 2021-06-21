@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.entendiste.io.response.AsignaturasResponse;
@@ -52,5 +54,10 @@ public class AsignaturasActivity extends AppCompatActivity implements Callback<L
     @Override
     public void onFailure(Call<List<AsignaturasResponse>> call, Throwable t) {
         Toast.makeText(this, "Fallo buscando las asignaturas", Toast.LENGTH_SHORT).show();
+    }
+
+    public void buscarAsignatura(View view) {
+        Intent nuevaAsignatura = new Intent(this, NuevaAsignaturaActivity.class);
+        startActivity(nuevaAsignatura);
     }
 }

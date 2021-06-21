@@ -20,7 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AnswerActivity extends AppCompatActivity {
-    private int idPregunta;
+    private String idPregunta;
     private RadioGroup rdgRespuesta;
     private Button btnConfirmar;
 
@@ -34,12 +34,12 @@ public class AnswerActivity extends AppCompatActivity {
 
             rdgRespuesta = (RadioGroup)findViewById(R.id.rdgRespuesta);
             btnConfirmar = (Button)findViewById(R.id.btnConfirmar);
-            idPregunta = parametros.getInt("idPregunta");
+            idPregunta = parametros.getString("idPregunta");
 
             SharedPreferences userpref = getSharedPreferences("datos", Context.MODE_PRIVATE);
             String user = userpref.getString("user", "");
 
-            Call<RespuestaResponse> call = ApiAdapter.getApiService().getRespuesta(idPregunta, user);
+            Call<RespuestaResponse> call = ApiAdapter.getApiService().getRespuesta(Integer.parseInt(idPregunta), user);
             call.enqueue(new Callback<RespuestaResponse>() { //quizás execute es mejor porque es síncrono
                 @Override
                 public void onResponse(Call<RespuestaResponse> call, Response<RespuestaResponse> response) {
@@ -71,8 +71,8 @@ public class AnswerActivity extends AppCompatActivity {
         if(eleccion != null) {
             SharedPreferences userpref = getSharedPreferences("datos", Context.MODE_PRIVATE);
             String user = userpref.getString("user", "");
-            Toast.makeText(getApplicationContext(), "Respuesta guardada correctamente", Toast.LENGTH_SHORT).show();
-            Call<RespuestaResponse> call = ApiAdapter.getApiService().setRespuesta(idPregunta, user, eleccion);
+
+            Call<RespuestaResponse> call = ApiAdapter.getApiService().setRespuesta(Integer.parseInt(idPregunta), user, eleccion);
             call.enqueue(new Callback<RespuestaResponse>() {
                 @Override
                 public void onResponse(Call<RespuestaResponse> call, Response<RespuestaResponse> response) {

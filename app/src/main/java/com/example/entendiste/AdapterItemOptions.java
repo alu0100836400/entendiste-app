@@ -23,6 +23,7 @@ public class AdapterItemOptions extends RecyclerView.Adapter<AdapterItemOptions.
 
     public AdapterItemOptions(ArrayList<AsignaturasResponse> listaOpciones, AppCompatActivity activity) {
         this.listaOpciones = listaOpciones;
+        //for(int i = 0; i < 30; i++) this.listaOpciones.add(listaOpciones.get(0)); // por si necesito una lista larga de asignaturas
         this.activity = activity;
     }
 

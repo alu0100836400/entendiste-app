@@ -1,17 +1,17 @@
 package com.example.entendiste.io.response;
 
 public class TemasResponse {
-    public String idPregunta;
+    public String id;
     public String idAsignatura;
     public String idProfesor;
     public String pregunta;
 
-    public String getIdPregunta() {
-        return idPregunta;
+    public String getId() {
+        return id;
     }
 
-    public void setIdPregunta(String idPregunta) {
-        this.idPregunta = idPregunta;
+    public void setId(String idPregunta) {
+        this.id = idPregunta;
     }
 
     public String getIdAsignatura() {

@@ -22,4 +22,10 @@
     <string name="entendido">Entendido</string>
     <string name="noEntendido">No entendido</string>
     <string name="confirmar">Confirmar</string>
+
+    <string name="nuevaAsignatura">Añadir asignatura</string>
+    <string name="buscar">Buscar</string>
+    <string name="asignatura">Asignatura</string>
+
+
 </resources>

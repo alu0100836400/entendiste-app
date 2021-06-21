@@ -46,4 +46,9 @@ public interface ApiService {
             @Field("user") String user,
             @Field("respuesta") boolean respuesta
     );
+
+    @GET("buscarAsignatura")
+    Call<List<AsignaturasResponse>> getAsignaturasBuscar(
+            @Query("asignatura") String asignatura
+    );
 }
