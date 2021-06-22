@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.entendiste.io.response.AsignaturasResponse;
-import com.example.entendiste.model.Asignatura;
 
 import java.util.ArrayList;
 import java.util.List;

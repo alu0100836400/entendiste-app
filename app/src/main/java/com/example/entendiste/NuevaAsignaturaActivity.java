@@ -1,6 +1,8 @@
 package com.example.entendiste;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.widget.Toast;
 import com.example.entendiste.io.response.AsignaturasResponse;
 import com.example.entendiste.io.response.RespuestaResponse;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,6 +26,7 @@ public class NuevaAsignaturaActivity extends AppCompatActivity {
     private Spinner modoBusqueda;
     private EditText et_asignatura;
     private Button btn_buscar;
+    private RecyclerView rv_encontrados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,8 @@ public class NuevaAsignaturaActivity extends AppCompatActivity {
         modoBusqueda = (Spinner) findViewById(R.id.modo_sp);
         et_asignatura = (EditText) findViewById(R.id.et_asignatura);
         btn_buscar = (Button) findViewById(R.id.btn_buscar);
+        rv_encontrados = (RecyclerView) findViewById(R.id.rv_encontradas);
+        rv_encontrados.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         String [] opciones = {"Por código", "Por nombre"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opciones);
@@ -48,19 +55,19 @@ public class NuevaAsignaturaActivity extends AppCompatActivity {
             default: Toast.makeText(this, "Algo fue mal", Toast.LENGTH_SHORT).show();
         }
 
-        Call<AsignaturasResponse> call = ApiAdapter.getApiService().getAsignaturasBuscar(Integer.parseInt(idPregunta));
-        call.enqueue(new Callback<AsignaturasResponse>() { //quizás execute es mejor porque es síncrono
+        Call<List<AsignaturasResponse>> call = ApiAdapter.getApiService().getAsignaturasBuscar(asignatura, opcion);
+        call.enqueue(new Callback<List<AsignaturasResponse>>() { //quizás execute es mejor porque es síncrono
             @Override
-            public void onResponse(Call<AsignaturasResponse> call, Response<AsignaturasResponse> response) {
-                AsignaturasResponse respuesta = response.body();
-                if(!respuesta.getEmpty()) {
-                    if(respuesta.getRespuesta()) rdgRespuesta.check(R.id.yesBtn);
-                    else rdgRespuesta.check(R.id.noBtn);
-                }
+            public void onResponse(Call<List<AsignaturasResponse>> call, Response<List<AsignaturasResponse>> response) {
+                List<AsignaturasResponse> respuesta = response.body();
+
+                AdapterItemOptions adapter = new AdapterItemOptions(respuesta, this); //arreglar esto 
+                rv_encontrados.setAdapter(adapter);
+
             }
 
             @Override
-            public void onFailure(Call<AsignaturasResponse> call, Throwable t) {
+            public void onFailure(Call<List<AsignaturasResponse>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Fallo buscando la respuesta", Toast.LENGTH_SHORT).show();
             }
         });

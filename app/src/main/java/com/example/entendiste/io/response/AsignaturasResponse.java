@@ -4,6 +4,7 @@ public class AsignaturasResponse {
 
     public String id;
     public String nombre;
+    //añadir al profe encargado de esa asignatura
 
     public String getId() {
         return id;
