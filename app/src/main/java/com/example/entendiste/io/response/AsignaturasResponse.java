@@ -4,6 +4,7 @@ public class AsignaturasResponse {
 
     public String id;
     public String nombre;
+    public String password;
     //añadir al profe encargado de esa asignatura
 
     public String getId() {
@@ -22,4 +23,7 @@ public class AsignaturasResponse {
         this.nombre = nombre;
     }
 
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
 }

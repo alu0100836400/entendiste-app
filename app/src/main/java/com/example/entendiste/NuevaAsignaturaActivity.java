@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.entendiste.io.response.AsignaturasResponse;
 import com.example.entendiste.io.response.RespuestaResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -55,19 +57,19 @@ public class NuevaAsignaturaActivity extends AppCompatActivity {
             default: Toast.makeText(this, "Algo fue mal", Toast.LENGTH_SHORT).show();
         }
 
-        Call<List<AsignaturasResponse>> call = ApiAdapter.getApiService().getAsignaturasBuscar(asignatura, opcion);
-        call.enqueue(new Callback<List<AsignaturasResponse>>() { //quizás execute es mejor porque es síncrono
+        Call<ArrayList<AsignaturasResponse>> call = ApiAdapter.getApiService().getAsignaturasBuscar(asignatura, opcion);
+        call.enqueue(new Callback<ArrayList<AsignaturasResponse>>() { //quizás execute es mejor porque es síncrono
             @Override
-            public void onResponse(Call<List<AsignaturasResponse>> call, Response<List<AsignaturasResponse>> response) {
-                List<AsignaturasResponse> respuesta = response.body();
+            public void onResponse(Call<ArrayList<AsignaturasResponse>> call, Response<ArrayList<AsignaturasResponse>> response) {
+                ArrayList<AsignaturasResponse> respuesta = response.body();
 
-                AdapterItemOptions adapter = new AdapterItemOptions(respuesta, this); //arreglar esto 
+                AdapterItemOptions adapter = new AdapterItemOptions(respuesta, NuevaAsignaturaActivity.this); //arreglar esto
                 rv_encontrados.setAdapter(adapter);
 
             }
 
             @Override
-            public void onFailure(Call<List<AsignaturasResponse>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<AsignaturasResponse>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Fallo buscando la respuesta", Toast.LENGTH_SHORT).show();
             }
         });

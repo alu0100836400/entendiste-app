@@ -1,13 +1,17 @@
 package com.example.entendiste;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +24,7 @@ public class AdapterItemOptions extends RecyclerView.Adapter<AdapterItemOptions.
 
     ArrayList<AsignaturasResponse> listaOpciones;
     AppCompatActivity activity;
+    private String password;
 
     public AdapterItemOptions(ArrayList<AsignaturasResponse> listaOpciones, AppCompatActivity activity) {
         this.listaOpciones = listaOpciones;
@@ -62,10 +67,37 @@ public class AdapterItemOptions extends RecyclerView.Adapter<AdapterItemOptions.
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent temas = new Intent(activity, TemasActivity.class);
-                    temas.putExtra("idAsignatura", s.getId());
-                    activity.startActivity(temas);
-                    //Toast.makeText(activity, "clickado", Toast.LENGTH_SHORT).show();
+                    if(activity instanceof NuevaAsignaturaActivity) {
+                        AlertDialog.Builder pedirPassword = new AlertDialog.Builder(activity);
+                        pedirPassword.setTitle("Contraseña");
+                        final EditText et_password = new EditText(activity);
+                        et_password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        pedirPassword.setView(et_password);
+
+                        pedirPassword.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                password = et_password.getText().toString();
+                                Toast.makeText(activity, password, Toast.LENGTH_SHORT).show();
+                                //comprobar contraseña, agregar a mis asignaturas y entrar en la asignatura
+                                s.getPassword(); //la api aun no me manda el password, arreglar eso
+                            }
+                        });
+
+                        pedirPassword.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        pedirPassword.show();
+                    }
+                    else {
+                        Intent temas = new Intent(activity, TemasActivity.class);
+                        temas.putExtra("idAsignatura", s.getId());
+                        activity.startActivity(temas);
+                        //Toast.makeText(activity, "clickado", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
             opcion.setText(s.getNombre());

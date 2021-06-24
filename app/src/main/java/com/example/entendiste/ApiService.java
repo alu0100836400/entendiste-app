@@ -5,6 +5,7 @@ import com.example.entendiste.io.response.LoginResponse;
 import com.example.entendiste.io.response.RespuestaResponse;
 import com.example.entendiste.io.response.TemasResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -48,7 +49,7 @@ public interface ApiService {
     );
 
     @GET("asignaturas-buscar")
-    Call<List<AsignaturasResponse>> getAsignaturasBuscar(
+    Call<ArrayList<AsignaturasResponse>> getAsignaturasBuscar(
             @Query("asignatura") String asignatura,
             @Query("modo") int modo
     );
