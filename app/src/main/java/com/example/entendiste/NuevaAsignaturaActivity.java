@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -57,15 +59,16 @@ public class NuevaAsignaturaActivity extends AppCompatActivity {
             default: Toast.makeText(this, "Algo fue mal", Toast.LENGTH_SHORT).show();
         }
 
+        String usuario = getSharedPreferences("datos", Context.MODE_PRIVATE).getString("user", "");
+
         Call<ArrayList<AsignaturasResponse>> call = ApiAdapter.getApiService().getAsignaturasBuscar(asignatura, opcion);
         call.enqueue(new Callback<ArrayList<AsignaturasResponse>>() { //quizás execute es mejor porque es síncrono
             @Override
             public void onResponse(Call<ArrayList<AsignaturasResponse>> call, Response<ArrayList<AsignaturasResponse>> response) {
                 ArrayList<AsignaturasResponse> respuesta = response.body();
 
-                AdapterItemOptions adapter = new AdapterItemOptions(respuesta, NuevaAsignaturaActivity.this); //arreglar esto
+                AdapterItemOptions adapter = new AdapterItemOptions(respuesta, NuevaAsignaturaActivity.this, usuario);
                 rv_encontrados.setAdapter(adapter);
-
             }
 
             @Override

@@ -27,5 +27,7 @@
     <string name="buscar">Buscar</string>
     <string name="asignatura">Asignatura</string>
 
+    <string name="desc_main_img">Logo entendiste principal</string>
+
 
 </resources>

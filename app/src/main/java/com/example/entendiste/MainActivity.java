@@ -2,7 +2,9 @@ package com.example.entendiste;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,18 +25,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Login(View view) {
-        Intent login = new Intent(this, LoginActivity.class);
-        //login.putExtra("dato", datoEjemplo.getText().toString()); //así se le pasa un argumento a la otra vista
-        startActivity(login);
+        String usuario = getSharedPreferences("datos", Context.MODE_PRIVATE).getString("user", "");
+        if(usuario.equals("")) {
+            Intent login = new Intent(this, LoginActivity.class);
+            startActivity(login);
+        }
+        else {
+            Toast.makeText(this, "Hola "+usuario, Toast.LENGTH_SHORT).show();
+            Intent asignaturas = new Intent(this, AsignaturasActivity.class);
+            startActivity(asignaturas);
+        }
     }
-    public void asignaturas(View view) {
-        Intent asignaturas = new Intent(this, AsignaturasActivity.class);
-        startActivity(asignaturas);
-    }
-    public void answer(View view) {
-        Intent answer = new Intent(this, AnswerActivity.class);
-        answer.putExtra("idPregunta", 8);
-        startActivity(answer);
+
+    public void Logout(View view) {
+        SharedPreferences userpref = getSharedPreferences("datos", Context.MODE_PRIVATE);
+        SharedPreferences.Editor useredit = userpref.edit();
+        useredit.remove("user");
+        useredit.commit();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

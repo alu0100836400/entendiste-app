@@ -53,4 +53,10 @@ public interface ApiService {
             @Query("asignatura") String asignatura,
             @Query("modo") int modo
     );
+
+    @GET("asignaturas-ingresar")
+    Call<AsignaturasResponse> asignaturaIngresar(
+            @Query("asignatura") String asignatura,
+            @Query("user") String user
+    );
 }

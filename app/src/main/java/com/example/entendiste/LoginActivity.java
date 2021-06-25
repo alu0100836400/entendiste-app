@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements Callback<LoginRe
     }
 
     public void Login(View view) {
-        Call<LoginResponse> call = ApiAdapter.getApiService().getLogin("alu0100836400", "123456"); //user.getText().toString(), password.getText().toString()
+        Call<LoginResponse> call = ApiAdapter.getApiService().getLogin(user.getText().toString(), password.getText().toString());
         call.enqueue(this);
     }
 
@@ -51,22 +51,20 @@ public class LoginActivity extends AppCompatActivity implements Callback<LoginRe
             if(body.key.toString().equals("true")) {
                 SharedPreferences userpref = getSharedPreferences("datos", Context.MODE_PRIVATE);
                 SharedPreferences.Editor useredit = userpref.edit();
-                useredit.putString("user", "alu0100836400"); //user.getText().toString()
+                useredit.putString("user", user.getText().toString());
                 useredit.commit();
 
-                Toast.makeText(LoginActivity.this, "Pa dentro!", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Login correcto", Toast.LENGTH_LONG).show();
                 Intent asignaturas = new Intent(this, AsignaturasActivity.class);
                 startActivity(asignaturas);
             }
             else
-                Toast.makeText(LoginActivity.this, "No puedes pasar!", Toast.LENGTH_LONG).show();
-
-            Log.d("response: ", body.key.toString());
+                Toast.makeText(LoginActivity.this, "Login incorrecto", Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public void onFailure(Call<LoginResponse> call, Throwable t) {
-        Toast.makeText(LoginActivity.this, "upsss, no se pudo conectar", Toast.LENGTH_LONG).show();
+        Toast.makeText(LoginActivity.this, "Ups! No se pudo conectar", Toast.LENGTH_LONG).show();
     }
 }

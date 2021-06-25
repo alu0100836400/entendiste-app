@@ -20,16 +20,22 @@ import com.example.entendiste.io.response.AsignaturasResponse;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class AdapterItemOptions extends RecyclerView.Adapter<AdapterItemOptions.ViewHolderOptions> {
 
     ArrayList<AsignaturasResponse> listaOpciones;
     AppCompatActivity activity;
     private String password;
+    private String user;
 
-    public AdapterItemOptions(ArrayList<AsignaturasResponse> listaOpciones, AppCompatActivity activity) {
+    public AdapterItemOptions(ArrayList<AsignaturasResponse> listaOpciones, AppCompatActivity activity, String user) {
         this.listaOpciones = listaOpciones;
         //for(int i = 0; i < 30; i++) this.listaOpciones.add(listaOpciones.get(0)); // por si necesito una lista larga de asignaturas
         this.activity = activity;
+        this.user = user;
     }
 
     @NonNull
@@ -78,9 +84,33 @@ public class AdapterItemOptions extends RecyclerView.Adapter<AdapterItemOptions.
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 password = et_password.getText().toString();
-                                Toast.makeText(activity, password, Toast.LENGTH_SHORT).show();
-                                //comprobar contraseña, agregar a mis asignaturas y entrar en la asignatura
-                                s.getPassword(); //la api aun no me manda el password, arreglar eso
+                                if(password.equals(s.getPassword())) {
+                                    Toast.makeText(activity, "Contraseña correcta", Toast.LENGTH_SHORT).show();
+
+                                    //añadir a mis asignaturas y entrar
+                                    Call<AsignaturasResponse> call = ApiAdapter.getApiService().asignaturaIngresar(s.getId(), user);
+                                    call.enqueue(new Callback<AsignaturasResponse>() { //quizás execute es mejor porque es síncrono
+                                        @Override
+                                        public void onResponse(Call<AsignaturasResponse> call, Response<AsignaturasResponse> response) {
+                                            AsignaturasResponse respuesta = response.body();
+
+                                            if(respuesta.isInsercionCorrecta()) {
+                                                Intent temas = new Intent(activity, TemasActivity.class);
+                                                temas.putExtra("idAsignatura", s.getId());
+                                                activity.startActivity(temas);
+                                            }
+                                            else Toast.makeText(activity, "No se pudo ingresar a la asignatura", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<AsignaturasResponse> call, Throwable t) {
+                                            Toast.makeText(activity, "No se pudo insertar", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                                else {
+                                    Toast.makeText(activity, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
 

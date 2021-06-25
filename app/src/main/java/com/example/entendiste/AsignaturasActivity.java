@@ -46,7 +46,7 @@ public class AsignaturasActivity extends AppCompatActivity implements Callback<L
         for(int i = 0; i < response.body().size(); i++) {
             listOpciones.add(response.body().get(i));
         }
-        AdapterItemOptions adapter = new AdapterItemOptions(listOpciones, this);
+        AdapterItemOptions adapter = new AdapterItemOptions(listOpciones, this, "");
         recycler.setAdapter(adapter);
     }
 
