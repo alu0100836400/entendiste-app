@@ -5,9 +5,17 @@
     <string name="login">Entrar</string>
     <string name="verpasswords">Ver contraseñas</string>
 
-    <string name="item1">Mi cuenta</string>
+    <string name="item1">Asignaturas</string>
     <string name="item2">Configuracion</string>
     <string name="item3">Salir</string>
+
+    <!-- Títulos de activities -->
+
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_asignaturas">Asignaturas</string>
+    <string name="title_activity_buscar">Buscar Asignatura</string>
+    <string name="title_activity_temas">Temas</string>
+    <string name="title_activity_answer">Responder</string>
 
     <!-- Botones de opciones -->
 
@@ -16,9 +24,7 @@
     <string name="boton3">Opción 3</string>
     <string name="boton4">Opción 4</string>
     <string name="mensaje">mensaje</string>
-    <string name="title_activity_asignaturas">AsignaturasActivity</string>
 
-    <string name="title_activity_temas">TemasActivity</string>
     <string name="entendido">Entendido</string>
     <string name="noEntendido">No entendido</string>
     <string name="confirmar">Confirmar</string>

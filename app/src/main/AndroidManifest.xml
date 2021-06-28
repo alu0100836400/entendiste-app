@@ -13,20 +13,21 @@
         android:theme="@style/Theme.Entendiste"
         android:usesCleartextTraffic="true">
         <activity android:name=".NuevaAsignaturaActivity"
+            android:label="@string/title_activity_buscar"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".AnswerActivity"
+            android:label="@string/title_activity_answer"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".TemasActivity"
             android:label="@string/title_activity_temas"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Entendiste.NoActionBar" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AsignaturasActivity"
             android:label="@string/title_activity_asignaturas"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Entendiste.NoActionBar" />
+            android:screenOrientation="portrait"/>
         <activity android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"

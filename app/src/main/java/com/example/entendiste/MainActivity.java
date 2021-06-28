@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.entendiste.model.Asignatura;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,36 +33,55 @@ public class MainActivity extends AppCompatActivity {
             startActivity(login);
         }
         else {
-            Toast.makeText(this, "Hola "+usuario, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Hola " + usuario, Toast.LENGTH_SHORT).show();
             Intent asignaturas = new Intent(this, AsignaturasActivity.class);
             startActivity(asignaturas);
         }
     }
 
-    public void Logout(View view) {
+    public void salir() {
         SharedPreferences userpref = getSharedPreferences("datos", Context.MODE_PRIVATE);
         SharedPreferences.Editor useredit = userpref.edit();
         useredit.remove("user");
         useredit.commit();
+
+        Intent principal = new Intent(this, MainActivity.class);
+        startActivity(principal);
+
+        Toast.makeText(this, "Hasta pronto", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
+    public void asignaturas() {
+        String usuario = getSharedPreferences("datos", Context.MODE_PRIVATE).getString("user", "");
+        if(usuario.length() > 0) {
+            Intent asignaturas = new Intent(this, AsignaturasActivity.class);
+            startActivity(asignaturas);
+        }
+        else {
+            Toast.makeText(this, "Debes iniciar sesión", Toast.LENGTH_SHORT).show();
+            Intent login = new Intent(this, LoginActivity.class);
+            startActivity(login);
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.item1: Toast.makeText(this, "Opción 1", Toast.LENGTH_SHORT).show();
+            case R.id.item1: asignaturas();
                             break;
-            //case R.id.item2: Intent opciones = new Intent(this, OptionsActivity.class);
-                            //login.putExtra("dato", datoEjemplo.getText().toString()); //así se le pasa un argumento a la otra vista
-              //              startActivity(opciones);
-                //            break;
-            case R.id.item3: Toast.makeText(this, "Opción 3", Toast.LENGTH_SHORT).show();
+            case R.id.item2: Toast.makeText(this, "Próximamente...", Toast.LENGTH_SHORT).show();
                             break;
-            default:         Toast.makeText(this, "¿?¿?", Toast.LENGTH_SHORT).show();
+            case R.id.item3: salir();
+                            break;
+            default:         Toast.makeText(this, "Opción no tratada", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

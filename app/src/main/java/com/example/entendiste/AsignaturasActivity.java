@@ -8,10 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.entendiste.io.response.AsignaturasResponse;
+import com.example.entendiste.io.response.RespuestaResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AsignaturasActivity extends AppCompatActivity implements Callback<List<AsignaturasResponse>> {
+public class AsignaturasActivity extends AppCompatActivity {
 
     private ArrayList<AsignaturasResponse> listOpciones;
     private RecyclerView recycler;
@@ -36,23 +39,71 @@ public class AsignaturasActivity extends AppCompatActivity implements Callback<L
         String usuario = userpref.getString("user", "");
 
         Call<List<AsignaturasResponse>> call = ApiAdapter.getApiService().getAsignaturas(usuario);
-        call.enqueue(this);
+        call.enqueue(new Callback<List<AsignaturasResponse>>() {
+            @Override
+            public void onResponse(Call<List<AsignaturasResponse>> call, Response<List<AsignaturasResponse>> response) {
+                listOpciones = new ArrayList<AsignaturasResponse>();
+
+                for(int i = 0; i < response.body().size(); i++) {
+                    listOpciones.add(response.body().get(i));
+                }
+                AdapterItemOptions adapter = new AdapterItemOptions(listOpciones, AsignaturasActivity.this, "");
+                recycler.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<AsignaturasResponse>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Fallo buscando las asignaturas", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    @Override
-    public void onResponse(Call<List<AsignaturasResponse>> call, Response<List<AsignaturasResponse>> response) {
-        listOpciones = new ArrayList<AsignaturasResponse>();
+    public void salir() {
+        SharedPreferences userpref = getSharedPreferences("datos", Context.MODE_PRIVATE);
+        SharedPreferences.Editor useredit = userpref.edit();
+        useredit.remove("user");
+        useredit.commit();
 
-        for(int i = 0; i < response.body().size(); i++) {
-            listOpciones.add(response.body().get(i));
+        Intent principal = new Intent(this, MainActivity.class);
+        startActivity(principal);
+
+        Toast.makeText(this, "Hasta pronto", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    public void asignaturas() {
+        String usuario = getSharedPreferences("datos", Context.MODE_PRIVATE).getString("user", "");
+        if(usuario.length() > 0) {
+            Intent asignaturas = new Intent(this, AsignaturasActivity.class);
+            startActivity(asignaturas);
         }
-        AdapterItemOptions adapter = new AdapterItemOptions(listOpciones, this, "");
-        recycler.setAdapter(adapter);
+        else {
+            Toast.makeText(this, "Debes iniciar sesión", Toast.LENGTH_SHORT).show();
+            Intent login = new Intent(this, LoginActivity.class);
+            startActivity(login);
+        }
+        finish();
     }
 
     @Override
-    public void onFailure(Call<List<AsignaturasResponse>> call, Throwable t) {
-        Toast.makeText(this, "Fallo buscando las asignaturas", Toast.LENGTH_SHORT).show();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.item1: asignaturas();
+                break;
+            case R.id.item2: Toast.makeText(this, "Próximamente...", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.item3: salir();
+                break;
+            default:         Toast.makeText(this, "Opción no tratada", Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void buscarAsignatura(View view) {
