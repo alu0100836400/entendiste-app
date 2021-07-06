@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.entendiste.io.response.AsignaturasResponse;
@@ -27,11 +29,13 @@ public class AsignaturasActivity extends AppCompatActivity {
 
     private ArrayList<AsignaturasResponse> listOpciones;
     private RecyclerView recycler;
+    private TextView emptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asignaturas);
+        emptyView = (TextView) findViewById(R.id.empty_view);
         recycler = (RecyclerView) findViewById(R.id.rv1);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
@@ -47,8 +51,17 @@ public class AsignaturasActivity extends AppCompatActivity {
                 for(int i = 0; i < response.body().size(); i++) {
                     listOpciones.add(response.body().get(i));
                 }
-                AdapterItemOptions adapter = new AdapterItemOptions(listOpciones, AsignaturasActivity.this, "");
-                recycler.setAdapter(adapter);
+                if(listOpciones.isEmpty()) {
+                    recycler.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                    emptyView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                }
+                else {
+                    recycler.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                    AdapterItemOptions adapter = new AdapterItemOptions(listOpciones, AsignaturasActivity.this, "");
+                    recycler.setAdapter(adapter);
+                }
             }
 
             @Override

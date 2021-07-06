@@ -51,7 +51,8 @@ public interface ApiService {
     @GET("asignaturas-buscar")
     Call<ArrayList<AsignaturasResponse>> getAsignaturasBuscar(
             @Query("asignatura") String asignatura,
-            @Query("modo") int modo
+            @Query("modo") int modo,
+            @Query("user") String user
     );
 
     @GET("asignaturas-ingresar")

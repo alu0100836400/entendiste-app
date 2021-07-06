@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.entendiste.io.response.AsignaturasResponse;
@@ -28,6 +30,7 @@ public class TemasActivity extends AppCompatActivity {
     private ArrayList<TemasResponse> listOpciones;
     private RecyclerView recycler;
     private String idAsignatura;
+    private TextView emptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class TemasActivity extends AppCompatActivity {
         Bundle parametros = this.getIntent().getExtras();
         if(parametros !=null){
             setContentView(R.layout.activity_temas);
+            emptyView = (TextView) findViewById(R.id.empty_view2);
             recycler = (RecyclerView) findViewById(R.id.rv1);
             recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
             idAsignatura = parametros.getString("idAsignatura");
@@ -47,8 +51,16 @@ public class TemasActivity extends AppCompatActivity {
                     for(int i = 0; i < response.body().size(); i++) {
                         listOpciones.add(response.body().get(i));
                     }
-                    AdapterItemTemas adapter = new AdapterItemTemas(listOpciones, TemasActivity.this);
-                    recycler.setAdapter(adapter);
+                    if(listOpciones.isEmpty()) {
+                        recycler.setVisibility(View.GONE);
+                        emptyView.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        recycler.setVisibility(View.VISIBLE);
+                        emptyView.setVisibility(View.GONE);
+                        AdapterItemTemas adapter = new AdapterItemTemas(listOpciones, TemasActivity.this);
+                        recycler.setAdapter(adapter);
+                    }
                 }
 
                 @Override
