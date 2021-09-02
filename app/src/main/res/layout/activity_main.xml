@@ -32,4 +32,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/logo_inicio_foreground" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

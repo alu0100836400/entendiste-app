@@ -77,7 +77,7 @@ public class AsignaturasActivity extends AppCompatActivity {
         useredit.remove("user");
         useredit.commit();
 
-        Intent principal = new Intent(this, MainActivity.class);
+        Intent principal = new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(principal);
 
         Toast.makeText(this, "Hasta pronto", Toast.LENGTH_SHORT).show();
