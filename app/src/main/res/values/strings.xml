@@ -36,5 +36,11 @@
     <string name="desc_main_img">Logo entendiste principal</string>
     <string name="sin_datos">Lista vacía</string>
 
+    <!-- Pantalla responder -->
+
+    <string name="alus_respondieron">Número de alumnos que respondieron:</string>
+    <string name="alus_entendieron">Número de alumnos que entendieron el tema:</string>
+    <string name="alus_no_entendieron">Número de alumnos que no entendieron el tema:</string>
+
 
 </resources>

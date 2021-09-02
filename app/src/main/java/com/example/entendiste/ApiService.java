@@ -34,6 +34,11 @@ public interface ApiService {
             @Query("idAsignatura") String idAsignatura
     );
 
+    @GET("respuestas")
+    Call<RespuestaResponse> getRespuestas(
+            @Query("idPregunta") int idPregunta
+    );
+
     @GET("respuesta")
     Call<RespuestaResponse> getRespuesta(
             @Query("idPregunta") int idPregunta,
