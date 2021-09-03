@@ -10,11 +10,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.entendiste.io.response.AsignaturasResponse;
+import com.example.entendiste.io.response.EstadisticasResponse;
 import com.example.entendiste.io.response.RespuestaResponse;
 
 import org.w3c.dom.Text;
@@ -31,6 +33,7 @@ public class AnswerActivity extends AppCompatActivity {
     private TextView responden;
     private TextView entienden;
     private TextView noentienden;
+    private ProgressBar porcentaje;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class AnswerActivity extends AppCompatActivity {
             responden = (TextView) findViewById(R.id.tv_input_responden);
             entienden = (TextView) findViewById(R.id.tv_input_entienden);
             noentienden = (TextView) findViewById(R.id.tv_input_noentienden);
+            porcentaje = (ProgressBar) findViewById(R.id.pb_porcentaje);
 
             SharedPreferences userpref = getSharedPreferences("datos", Context.MODE_PRIVATE);
             String user = userpref.getString("user", "");
@@ -65,20 +69,20 @@ public class AnswerActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Fallo buscando la respuesta", Toast.LENGTH_SHORT).show();
                 }
             });
-    //modificar de aqui pa abajo la llamada y luego el back
-            Call<RespuestaResponse> call2 = ApiAdapter.getApiService().getRespuestas(Integer.parseInt(idPregunta));
-            call2.enqueue(new Callback<RespuestaResponse>() { //quizás execute es mejor porque es síncrono
+
+            Call<EstadisticasResponse> call2 = ApiAdapter.getApiService().getEstadisticas(Integer.parseInt(idPregunta));
+            call2.enqueue(new Callback<EstadisticasResponse>() { //quizás execute es mejor porque es síncrono
                 @Override
-                public void onResponse(Call<RespuestaResponse> call, Response<RespuestaResponse> response) {
-                    RespuestaResponse respuesta = response.body();
-                    if(!respuesta.getEmpty()) {
-                        if(respuesta.getRespuesta()) rdgRespuesta.check(R.id.yesBtn);
-                        else rdgRespuesta.check(R.id.noBtn);
-                    }
+                public void onResponse(Call<EstadisticasResponse> call, Response<EstadisticasResponse> response) {
+                    EstadisticasResponse respuesta = response.body();
+                    porcentaje.setProgress(respuesta.getPorcentaje());
+                    responden.setText(Integer.toString(respuesta.getRespondieron()));
+                    entienden.setText(Integer.toString(respuesta.getEntendieron()));
+                    noentienden.setText(Integer.toString(respuesta.getNoEntendieron()));
                 }
 
                 @Override
-                public void onFailure(Call<RespuestaResponse> call, Throwable t) {
+                public void onFailure(Call<EstadisticasResponse> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), "Fallo buscando la respuesta", Toast.LENGTH_SHORT).show();
                 }
             });

@@ -1,6 +1,7 @@
 package com.example.entendiste;
 
 import com.example.entendiste.io.response.AsignaturasResponse;
+import com.example.entendiste.io.response.EstadisticasResponse;
 import com.example.entendiste.io.response.LoginResponse;
 import com.example.entendiste.io.response.RespuestaResponse;
 import com.example.entendiste.io.response.TemasResponse;
@@ -34,8 +35,8 @@ public interface ApiService {
             @Query("idAsignatura") String idAsignatura
     );
 
-    @GET("respuestas")
-    Call<RespuestaResponse> getRespuestas(
+    @GET("estadisticas")
+    Call<EstadisticasResponse> getEstadisticas(
             @Query("idPregunta") int idPregunta
     );
 
