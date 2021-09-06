@@ -1,8 +1,10 @@
 package com.example.entendiste;
 
 import com.example.entendiste.io.response.AsignaturasResponse;
+import com.example.entendiste.io.response.EstadisticasResponse;
 import com.example.entendiste.io.response.LoginResponse;
 import com.example.entendiste.io.response.RespuestaResponse;
+import com.example.entendiste.io.response.StandardResponse;
 import com.example.entendiste.io.response.TemasResponse;
 
 import java.util.ArrayList;
@@ -24,6 +26,12 @@ public interface ApiService {
             @Query("password") String password
     );
 
+    @POST("register")
+    Call<StandardResponse> register(
+           @Query("email") String email,
+           @Query("password") String password
+    );
+
     @GET("asignaturas")
     Call<List<AsignaturasResponse>> getAsignaturas(
             @Query("user") String user
@@ -32,6 +40,11 @@ public interface ApiService {
     @GET("preguntas")
     Call<List<TemasResponse>> getTemas(
             @Query("idAsignatura") String idAsignatura
+    );
+
+    @GET("estadisticas")
+    Call<EstadisticasResponse> getEstadisticas(
+            @Query("idPregunta") int idPregunta
     );
 
     @GET("respuesta")

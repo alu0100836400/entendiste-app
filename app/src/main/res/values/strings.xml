@@ -2,8 +2,12 @@
     <string name="app_name">Entendiste</string>
     <string name="user">Usuario</string>
     <string name="password">Contraseña</string>
+    <string name="repeat_password">Repite la contraseña</string>
     <string name="login">Entrar</string>
     <string name="verpasswords">Ver contraseñas</string>
+    <string name="email">Email</string>
+    <string name="or">o</string>
+    <string name="register">Regístrate</string>
 
     <string name="item1">Asignaturas</string>
     <string name="item2">Configuracion</string>
@@ -35,6 +39,12 @@
 
     <string name="desc_main_img">Logo entendiste principal</string>
     <string name="sin_datos">Lista vacía</string>
+
+    <!-- Pantalla responder -->
+
+    <string name="alus_respondieron">Número de alumnos que respondieron:</string>
+    <string name="alus_entendieron">Número de alumnos que entendieron el tema:</string>
+    <string name="alus_no_entendieron">Número de alumnos que no entendieron el tema:</string>
 
 
 </resources>
