@@ -2,8 +2,12 @@
     <string name="app_name">Entendiste</string>
     <string name="user">Usuario</string>
     <string name="password">Contraseña</string>
+    <string name="repeat_password">Repite la contraseña</string>
     <string name="login">Entrar</string>
     <string name="verpasswords">Ver contraseñas</string>
+    <string name="email">Email</string>
+    <string name="or">o</string>
+    <string name="register">Regístrate</string>
 
     <string name="item1">Asignaturas</string>
     <string name="item2">Configuracion</string>

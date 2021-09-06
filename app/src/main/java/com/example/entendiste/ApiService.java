@@ -4,6 +4,7 @@ import com.example.entendiste.io.response.AsignaturasResponse;
 import com.example.entendiste.io.response.EstadisticasResponse;
 import com.example.entendiste.io.response.LoginResponse;
 import com.example.entendiste.io.response.RespuestaResponse;
+import com.example.entendiste.io.response.StandardResponse;
 import com.example.entendiste.io.response.TemasResponse;
 
 import java.util.ArrayList;
@@ -23,6 +24,12 @@ public interface ApiService {
     Call<LoginResponse> getLogin(                   //argumentos que le pasas a la api
             @Query("username") String username,
             @Query("password") String password
+    );
+
+    @POST("register")
+    Call<StandardResponse> register(
+           @Query("email") String email,
+           @Query("password") String password
     );
 
     @GET("asignaturas")

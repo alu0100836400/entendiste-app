@@ -44,6 +44,11 @@ public class LoginActivity extends AppCompatActivity implements Callback<LoginRe
         call.enqueue(this);
     }
 
+    public void register(View view) {
+        Intent register = new Intent(this, RegisterActivity.class);
+        startActivity(register);
+    }
+
     @Override
     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
         if(response.isSuccessful()) {
